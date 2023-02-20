@@ -27,6 +27,8 @@ CREATE TABLE employees (
     manager VARCHAR(30)
 );
 
+
+
 --view all departments, 
 --view all roles, 
 --view all employees, 
