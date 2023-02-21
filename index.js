@@ -105,8 +105,33 @@ const start = () => {
       choices: options,
     })
     .then((answer) => {
+      if (answer.action == "Add department") {
+        addDepartment();
+      }
       if (answer.action == "Exit") {
         process.exit();
+      }
+    });
+};
+
+
+const addDepartment = () => {
+  inquirer
+    .prompt({
+      name: "department_name",
+      type: "input",
+      message: "Enter department name",
+    })
+    .then((input) => {
+      if (input) {
+        let sql = `INSERT INTO department (name) VALUES ("${input.department_name}");`;
+        con.query(sql, (err, row) => {
+          if (err) throw err;
+          let temp = new Department(row.insertId, input.department_name);
+          departments.push(temp);
+          console.log("Department added");
+          start();
+        });
       }
     });
 };
