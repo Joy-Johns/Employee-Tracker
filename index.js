@@ -55,6 +55,58 @@ var con = mysql.createConnection({
   port: 3001,
   user: "mypass",
   password: "mypass",
-  database: "employee_tracker_db",
+  database: "tracker_db",
   multipleStatements: true,
 });
+
+//Connection
+con.connect((err) => {
+  if (err) {
+    throw err;
+  }
+  console.log("Connected");
+
+  let sql =
+    "SELECT * FROM department; SELECT * FROM role; SELECT * FROM employee";
+  con.query(sql, (err, row) => {
+    if (err) throw err;
+    for (dep of row[0]) {
+      //console.table(dep)
+      let temp = new Department(dep.id, dep.name);
+      departments.push(temp);
+    }
+    for (role of row[1]) {
+      let temp = new Role(role.id, role.title, role.salary, role.department_id);
+      roles.push(temp);
+    }
+    for (emp of row[2]) {
+      let temp = new Employee(
+        emp.id,
+        emp.first_name,
+        emp.last_name,
+        emp.role_id
+      );
+      if (emp.manager_id) {
+        temp.setManagerId(emp.manager_id);
+      }
+      employees.push(temp);
+    }
+
+    start();
+  });
+});
+
+const start = () => {
+  inquirer
+    .prompt({
+      name: "action",
+      type: "list",
+      message: "What do you want to do?",
+      choices: options,
+    })
+    .then((answer) => {
+      if (answer.action == "Exit") {
+        process.exit();
+      }
+    });
+};
