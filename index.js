@@ -1,4 +1,4 @@
-var mysql = require("mysql");
+var mysql = require("mysql2");
 const inquirer = require("inquirer");
 
 let Department = require("./department.js");
@@ -52,8 +52,8 @@ let employeeQuestions = [
 
 var con = mysql.createConnection({
   host: "localhost",
-  port: 3001,
-  user: "user",
+  port: 3306,
+  user: "root",
   password: "pass",
   database: "tracker_db",
   multipleStatements: true,
