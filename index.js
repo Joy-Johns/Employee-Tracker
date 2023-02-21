@@ -1,37 +1,60 @@
-const express = require('express');
-// Import and require mysql2
-const mysql = require('mysql2');
+var mysql = require("mysql");
+const inquirer = require("inquirer");
 
-const PORT = process.env.PORT || 3001;
-const app = express();
+let Department = require("./department.js");
+let Role = require("./role.js");
+let Employee = require("./employee.js");
 
-// Express middleware
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+let departments = [];
+let roles = [];
+let employees = [];
 
-// Connect to database
-const db = mysql.createConnection(
+let options = [
+  "Add department",
+  "Add role",
+  "Add employee",
+  "View departments",
+  "View roles",
+  "View employees",
+  "View employees by manager",
+  "View the total utilized budget of a department",
+  "Update roles",
+  "Update employee manager",
+  "Delete department",
+  "Delete role",
+  "Delete employee",
+  "Exit",
+];
+let roleQuestions = [
   {
-    host: 'localhost',
-    // MySQL username,
-    user: 'root',
-    // MySQL password
-    password: '',
-    database: 'tracker_db'
+    name: "role_title",
+    type: "input",
+    message: "Enter role title",
   },
-  console.log(`Connected to the tracker_db database.`)
-);
+  {
+    name: "role_salary",
+    type: "input",
+    message: "Enter role salary",
+  },
+];
+let employeeQuestions = [
+  {
+    name: "first_name",
+    type: "input",
+    message: "Enter employee first name",
+  },
+  {
+    name: "last_name",
+    type: "input",
+    message: "Enter employee last name",
+  },
+];
 
-// Query database
-db.query('SELECT * FROM departments', function (err, results) {
-  console.log(results);
-});
-
-// Default response for any other request (Not Found)
-app.use((req, res) => {
-  res.status(404).end();
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+var con = mysql.createConnection({
+  host: "localhost",
+  port: 3001,
+  user: "mypass",
+  password: "mypass",
+  database: "employee_tracker_db",
+  multipleStatements: true,
 });
