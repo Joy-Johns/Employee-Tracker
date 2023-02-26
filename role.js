@@ -1,30 +1,22 @@
-module.exports = class Employee {
-    constructor(id, first_name, last_name, role_id) {
+module.exports = class Role {
+    constructor(id, title, salary, department_id) {
         this.id = id;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.role_id = role_id
-        this.manager_id = null
+        this.title  = title;
+        this.salary = salary;
+        this.department_id = department_id
     }
     getID(){
         return this.id
     }
-    getFirstName() {
-        return this.first_name
+    getTitle(){
+        return this.title
     }
-    getLastName() {
-        return this.last_name
+    getSalary(){
+        return this.salary
     }
-    getRoleId() {
-        return this.role_id
+    getDepartmentId(){
+        return this.department_id
     }
-    getManagerId() {
-        return this.manager_id
-    }
-    setRoleId(id) {
-        this.role_id = id
-    }
-    setManagerId(id) {
-        this.manager_id = id
-    }
+    
+   
 }
