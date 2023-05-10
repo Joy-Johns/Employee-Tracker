@@ -1,5 +1,3 @@
-https://drive.google.com/file/d/1luJdOMBDVpKd6pFbA7SNV9BIutNf9lji/view
-
 # Employee Tracker
 
   [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://mit-license.org/)
@@ -18,9 +16,11 @@ https://drive.google.com/file/d/1luJdOMBDVpKd6pFbA7SNV9BIutNf9lji/view
   
   ## Installation
   npm i
+  npm run seed
+  npm start
 
   ## Usage
-  To use the Employee Tracker, you must run npm i first. After doing that, you can run the node server using node index.js. You can also view the following video to see how this CMS is used. [How To Use The Employee Tracker](https://drive.google.com/file/d/1luJdOMBDVpKd6pFbA7SNV9BIutNf9lji/view)
+  To use the Employee Tracker, you must run npm i first. Once node modules are on your local, you can seed your data. Finally, run npm start to begin using the Employee Tracker. You can also view the following video to see how this CMS is used. [How To Use The Employee Tracker](https://drive.google.com/file/d/1x1NZmngvQ2X2pN9EGPoOBmrB-OL4H5y_/view)
 
 
   ## Licenses
